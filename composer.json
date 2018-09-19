@@ -1,0 +1,33 @@
+{
+    "name": "ghoster/changecustomerpassword",
+    "description": "",
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0",
+        
+        "magento/magento-composer-installer": "*"
+    },
+    "suggest": {
+
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GhoSter\\ChangeCustomerPassword\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "GhoSter/ChangeCustomerPassword"
+            ]
+        ]
+    }
+}
