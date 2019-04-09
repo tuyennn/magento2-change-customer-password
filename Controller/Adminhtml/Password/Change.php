@@ -2,23 +2,47 @@
 
 namespace GhoSter\ChangeCustomerPassword\Controller\Adminhtml\Password;
 
-class Change extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
+use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Customer\Model\CustomerRegistry;
+use Magento\Framework\Encryption\EncryptorInterface;
+
+/**
+ * Class Change
+ * @package GhoSter\ChangeCustomerPassword\Controller\Adminhtml\Password
+ */
+class Change extends Action
 {
+    /** @var Registry */
     protected $_coreRegistry;
 
+    /** @var CustomerRepositoryInterface */
     protected $customerRepository;
+
+    /** @var CustomerRegistry */
     protected $customerRegistry;
+
+    /** @var EncryptorInterface */
     protected $encryptor;
 
 
+    /**
+     * Change constructor.
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param CustomerRegistry $customerRegistry
+     * @param EncryptorInterface $encryptor
+     */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
-        \Magento\Customer\Model\CustomerRegistry $customerRegistry,
-        \Magento\Framework\Encryption\EncryptorInterface $encryptor
-    )
-    {
+        Context $context,
+        Registry $coreRegistry,
+        CustomerRepositoryInterface $customerRepository,
+        CustomerRegistry $customerRegistry,
+        EncryptorInterface $encryptor
+    ) {
         $this->_coreRegistry = $coreRegistry;
         $this->customerRepository = $customerRepository;
         $this->customerRegistry = $customerRegistry;
@@ -59,7 +83,6 @@ class Change extends \Magento\Backend\App\Action
         }
 
         return $resultRedirect->setPath('*/*/');
-
     }
 
     public function createPasswordHash($password)

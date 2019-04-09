@@ -2,16 +2,28 @@
 
 namespace GhoSter\ChangeCustomerPassword\Block\Adminhtml\Customer;
 
-class PasswordChange extends \Magento\Backend\Block\Template
+use Magento\Backend\Block\Template;
+use Magento\Framework\Registry;
+
+/**
+ * Class PasswordChange
+ * @package GhoSter\ChangeCustomerPassword\Block\Adminhtml\Customer
+ */
+class PasswordChange extends Template
 {
     protected $_coreRegistry;
 
+    /**
+     * PasswordChange constructor.
+     * @param Template\Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
+        Template\Context $context,
+        Registry $registry,
         array $data = []
-    )
-    {
+    ) {
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }
