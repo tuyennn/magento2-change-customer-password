@@ -4,6 +4,7 @@
 Change Customer Password In Admin Magento 2 module is implements the form in customer edit which allow admin change customer password directly like old-fashion way Magento 1.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ae1071a530754edc944356b4e1bcb92f)](https://www.codacy.com/app/GhoSterInc/ChangeCustomerPassword?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tuyennn/ChangeCustomerPassword&amp;utm_campaign=Badge_Grade)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/thinghost)
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-green.svg)
 
