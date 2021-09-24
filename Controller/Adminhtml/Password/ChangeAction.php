@@ -2,67 +2,69 @@
 
 namespace GhoSter\ChangeCustomerPassword\Controller\Adminhtml\Password;
 
+use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\Registry;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\CustomerRegistry;
 use Magento\Framework\Encryption\EncryptorInterface;
 
 /**
- * Class Change
- * @package GhoSter\ChangeCustomerPassword\Controller\Adminhtml\Password
+ * phpcs:ignore Magento2.Legacy.Copyright.FoundCopyrightMissingOrWrongFormat
+ * Class ChangeAction for password changing
  */
-class Change extends Action
+class ChangeAction extends Action
 {
-    /** @var Registry */
-    protected $_coreRegistry;
-
-    /** @var CustomerRepositoryInterface */
+    /**
+     * @var CustomerRepositoryInterface
+     */
     protected $customerRepository;
 
-    /** @var CustomerRegistry */
+    /**
+     * @var CustomerRegistry
+     */
     protected $customerRegistry;
 
-    /** @var EncryptorInterface */
+    /**
+     * @var EncryptorInterface
+     */
     protected $encryptor;
-
 
     /**
      * Change constructor.
+     *
      * @param Context $context
-     * @param Registry $coreRegistry
      * @param CustomerRepositoryInterface $customerRepository
      * @param CustomerRegistry $customerRegistry
      * @param EncryptorInterface $encryptor
      */
     public function __construct(
         Context $context,
-        Registry $coreRegistry,
         CustomerRepositoryInterface $customerRepository,
         CustomerRegistry $customerRegistry,
         EncryptorInterface $encryptor
     ) {
-        $this->_coreRegistry = $coreRegistry;
         $this->customerRepository = $customerRepository;
         $this->customerRegistry = $customerRegistry;
         $this->encryptor = $encryptor;
         parent::__construct($context);
     }
 
+    /**
+     * Change pwd action
+     *
+     * @return Redirect
+     */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        $data = $this->getRequest()->getPostValue();
+        $customerId = (int)$this->getRequest()->getPost('customer_id');
+        $password = trim($this->getRequest()->getPost('new_customer_pwd'));
 
-        if ($data) {
-
-            $customerId = $this->getRequest()->getParam('customer_id');
+        if ($customerId) {
             try {
-
-                $password = trim($this->getRequest()->getParam('new_customer_pwd'));
-
                 if (empty($password)) {
                     $this->messageManager->addErrorMessage(__('Password can not be empty'));
                 } else {
@@ -75,23 +77,32 @@ class Change extends Action
                     $this->messageManager->addSuccessMessage(__('Password has been updated successfully.'));
                 }
 
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Error: %1', $e->getMessage()));
             }
 
-            return $resultRedirect->setPath('*/index/edit', ['id' => $this->getRequest()->getParam('customer_id')]);
+            return $resultRedirect->setPath('*/index/edit', ['id' => $customerId]);
         }
 
         return $resultRedirect->setPath('*/*/');
     }
 
-    public function createPasswordHash($password)
+    /**
+     * Create password hash
+     *
+     * @param string $password
+     * @return string
+     */
+    protected function createPasswordHash(string $password)
     {
         return $this->encryptor->getHash($password, true);
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function _isAllowed()
     {
-        return true;
+        return $this->_authorization->isAllowed('Magento_Customer::manage');
     }
 }

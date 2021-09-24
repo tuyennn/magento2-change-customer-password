@@ -1,20 +1,23 @@
 # Change Customer Password In Admin - Magento 2
----
+
+    composer require ghoster/changecustomerpassword
+
 
 Change Customer Password In Admin Magento 2 module is implements the form in customer edit which allow admin change customer password directly like old-fashion way Magento 1.
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ae1071a530754edc944356b4e1bcb92f)](https://www.codacy.com/app/GhoSterInc/ChangeCustomerPassword?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tuyennn/ChangeCustomerPassword&amp;utm_campaign=Badge_Grade)
+[![Latest Stable Version](http://poser.pugx.org/ghoster/changecustomerpassword/v)](https://packagist.org/packages/ghoster/changecustomerpassword)
+[![Total Downloads](http://poser.pugx.org/ghoster/changecustomerpassword/downloads)](https://packagist.org/packages/ghoster/changecustomerpassword)
+[![Latest Unstable Version](http://poser.pugx.org/ghoster/changecustomerpassword/v/unstable)](https://packagist.org/packages/ghoster/changecustomerpassword)
+[![License](http://poser.pugx.org/ghoster/changecustomerpassword/license)](https://packagist.org/packages/ghoster/changecustomerpassword)
+[![PHP Version Require](http://poser.pugx.org/ghoster/changecustomerpassword/require/php)](https://packagist.org/packages/ghoster/changecustomerpassword)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ae1071a530754edc944356b4e1bcb92f)](https://www.codacy.com/gh/tuyennn/ChangeCustomerPassword/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tuyennn/ChangeCustomerPassword&amp;utm_campaign=Badge_Grade)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/thinghost)
-![Version 1.0.1](https://img.shields.io/badge/Version-1.0.1-green.svg)
+[![Build Status](https://app.travis-ci.com/tuyennn/magento2-change-customer-password.svg?branch=master)](https://app.travis-ci.com/github/tuyennn/magento2-change-customer-password)
+
 
 ---
-## [![Alt GhoSter](http://thinghost.info/wp-content/uploads/2015/12/ghoster.png "thinghost.info")](http://thinghost.info) Overview
-
-- [Extension on GitHub](https://github.com/tuyennn/ChangeCustomerPassword)
-- [Direct download link](https://github.com/tuyennn/ChangeCustomerPassword/tarball/master)
-
-![Alt Screenshot-1](https://thinghost.info/wp-content/uploads/2018/09/Selection_128-1024x368.jpg "thinghost.info")
+- [Extension on GitHub](https://github.com/tuyennn/magento2-change-customer-password)
+- [Direct download link](https://github.com/tuyennn/magento2-change-customer-password/tarball/master)
 
 ## Main Features
 
@@ -38,7 +41,7 @@ php bin/magento setup:static-content:deploy
 
 ## Installation without Composer
 
-* Download the files from github: [Direct download link](https://github.com/tuyennn/ChangeCustomerPassword/tarball/master)
+* Download the files from github: [Direct download link](https://github.com/tuyennn/magento2-change-customer-password/tarball/master)
 * Extract archive and copy all directories to app/code/GhoSter/ChangeCustomerPassword
 * Go to project home directory and execute these commands
 
