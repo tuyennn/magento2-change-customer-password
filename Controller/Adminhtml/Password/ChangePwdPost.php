@@ -12,9 +12,9 @@ use Magento\Framework\Encryption\EncryptorInterface;
 
 /**
  * phpcs:ignore Magento2.Legacy.Copyright.FoundCopyrightMissingOrWrongFormat
- * Class ChangeAction for password changing
+ * Class ChangePwdPost for password changing
  */
-class ChangeAction extends Action
+class ChangePwdPost extends Action
 {
     /**
      * @var CustomerRepositoryInterface
