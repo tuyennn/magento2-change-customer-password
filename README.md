@@ -10,7 +10,7 @@ Change Customer Password In Admin Magento 2 module is implements the form in cus
 [![Latest Unstable Version](http://poser.pugx.org/ghoster/changecustomerpassword/v/unstable)](https://packagist.org/packages/ghoster/changecustomerpassword)
 [![License](http://poser.pugx.org/ghoster/changecustomerpassword/license)](https://packagist.org/packages/ghoster/changecustomerpassword)
 [![PHP Version Require](http://poser.pugx.org/ghoster/changecustomerpassword/require/php)](https://packagist.org/packages/ghoster/changecustomerpassword)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ae1071a530754edc944356b4e1bcb92f)](https://www.codacy.com/gh/tuyennn/ChangeCustomerPassword/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tuyennn/ChangeCustomerPassword&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ae1071a530754edc944356b4e1bcb92f)](https://www.codacy.com/gh/tuyennn/magento2-change-customer-password/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tuyennn/magento2-change-customer-password&amp;utm_campaign=Badge_Grade)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/thinghost)
 [![Build Status](https://app.travis-ci.com/tuyennn/magento2-change-customer-password.svg?branch=master)](https://app.travis-ci.com/github/tuyennn/magento2-change-customer-password)
 
