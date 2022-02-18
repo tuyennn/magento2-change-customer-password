@@ -23,6 +23,21 @@ Change Customer Password In Admin Magento 2 module is implements the form in cus
 
 * Add a quick update Password button to customer view in Admin
 
+## Command-line usage
+
+Call the console command and pass the customers email address and the new password.
+
+```bash
+bin/magento customer:change-password test@example.com password123
+```
+
+If customer accounts are not shared between websites, a website code has to be specified with the `--website` or `-w` option.
+
+
+```bash
+bin/magento customer:change-password --website base test@example.com password123
+```
+
 ## Installation with Composer
 
 * Connect to your server with SSH
