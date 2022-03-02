@@ -131,6 +131,8 @@ class CustomerChangePasswordCommand extends Command
     }
 
     /**
+     * Get website Id by code
+     *
      * @param string $code
      * @return int
      * @throws LocalizedException
@@ -146,11 +148,13 @@ class CustomerChangePasswordCommand extends Command
     }
 
     /**
-     * @param $email
+     * Get customer by provided email
+     *
+     * @param string $email
      * @return Customer
      * @throws LocalizedException
      */
-    private function getCustomerByEmail($email): Customer
+    private function getCustomerByEmail(string $email): Customer
     {
         $customer = $this->customerFactory->create();
         if ($this->getWebsiteCode()) {
