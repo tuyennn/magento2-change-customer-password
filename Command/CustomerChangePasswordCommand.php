@@ -106,12 +106,11 @@ class CustomerChangePasswordCommand extends Command
     private function getWebsiteIdByCode(string $code): int
     {
         $website = $this->storeManager->getWebsite($code);
-        if (! $website->getId()) {
+        if (!$website->getId()) {
             throw new \InvalidArgumentException(sprintf('No website with ID "%s" found.', $code));
         }
 
-
-        return (int) $website->getId();
+        return (int)$website->getId();
     }
 
     private function getCustomerByEmail($email): Customer
@@ -122,7 +121,7 @@ class CustomerChangePasswordCommand extends Command
             $customer->setWebsiteId($websiteId);
         }
         $this->customerResource->loadByEmail($customer, $email);
-        if (! $customer->getId()) {
+        if (!$customer->getId()) {
             throw new \InvalidArgumentException(sprintf('No customer with email "%s" found.', $this->getEmail()));
         }
 
