@@ -44,6 +44,14 @@ class CustomerChangePasswordCommand extends Command
      */
     private $appState;
 
+    /**
+     * CustomerChangePasswordCommand Constructor
+     *
+     * @param CustomerFactory $customerFactory
+     * @param StoreManagerInterface $storeManager
+     * @param CustomerResource $resource
+     * @param AppState $state
+     */
     public function __construct(
         CustomerFactory $customerFactory,
         StoreManagerInterface $storeManager,
@@ -57,6 +65,9 @@ class CustomerChangePasswordCommand extends Command
         $this->appState = $state;
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function configure()
     {
         $this->setName('customer:change-password');
@@ -71,15 +82,16 @@ class CustomerChangePasswordCommand extends Command
         $this->addArgument('password', InputArgument::REQUIRED, 'Password to set');
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
         try {
-            // catch exception for compatibility with older Magento 2 versions and
-            // third party modules that set the application state in command constructors.
             $this->appState->setAreaCode(Area::AREA_ADMINHTML);
+            // phpcs:ignore Magento2.CodeAnalysis.EmptyBlock.DetectedCatch
         } catch (LocalizedException $exception) {
-            // left empty on purpose
         }
 
         $customer = $this->getCustomerByEmail($this->getEmail());
@@ -88,21 +100,41 @@ class CustomerChangePasswordCommand extends Command
         $output->writeln(sprintf('Updated password for customer "%s".', $this->getEmail()));
     }
 
+    /**
+     * Get input email
+     *
+     * @return string
+     */
     private function getEmail(): string
     {
         return $this->input->getArgument('email') ?? '';
     }
 
+    /**
+     * Get input password
+     *
+     * @return string
+     */
     private function getPassword(): string
     {
         return $this->input->getArgument('password') ?? '';
     }
 
+    /**
+     * Get input website code
+     *
+     * @return string
+     */
     private function getWebsiteCode(): string
     {
         return $this->input->getOption('website') ?? '';
     }
 
+    /**
+     * @param string $code
+     * @return int
+     * @throws LocalizedException
+     */
     private function getWebsiteIdByCode(string $code): int
     {
         $website = $this->storeManager->getWebsite($code);
@@ -113,6 +145,11 @@ class CustomerChangePasswordCommand extends Command
         return (int)$website->getId();
     }
 
+    /**
+     * @param $email
+     * @return Customer
+     * @throws LocalizedException
+     */
     private function getCustomerByEmail($email): Customer
     {
         $customer = $this->customerFactory->create();

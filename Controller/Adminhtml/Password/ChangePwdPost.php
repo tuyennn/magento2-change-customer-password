@@ -32,7 +32,7 @@ class ChangePwdPost extends Action
     protected $encryptor;
 
     /**
-     * Change constructor.
+     * ChangePwdPost constructor.
      *
      * @param Context $context
      * @param CustomerRepositoryInterface $customerRepository
