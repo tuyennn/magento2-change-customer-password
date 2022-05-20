@@ -9,8 +9,8 @@ name: Bug report about: Technical issue with the Module
 Provide the exact Magento version (example: 2.2.5) and any important information on the environment where bug is reproducible.
 -->
 
-1.
-2.
+1. Magento version
+2. Module version
 
 ### Steps to reproduce (*)
 

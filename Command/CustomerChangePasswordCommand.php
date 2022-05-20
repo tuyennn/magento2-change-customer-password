@@ -17,6 +17,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Command console for pwd change
+ */
 class CustomerChangePasswordCommand extends Command
 {
     /**
@@ -45,7 +48,7 @@ class CustomerChangePasswordCommand extends Command
     private $appState;
 
     /**
-     * CustomerChangePasswordCommand Constructor
+     * CustomerChangePasswordCommand constructor
      *
      * @param CustomerFactory $customerFactory
      * @param StoreManagerInterface $storeManager

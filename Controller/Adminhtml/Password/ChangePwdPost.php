@@ -11,7 +11,6 @@ use Magento\Customer\Model\CustomerRegistry;
 use Magento\Framework\Encryption\EncryptorInterface;
 
 /**
- * phpcs:ignore Magento2.Legacy.Copyright.FoundCopyrightMissingOrWrongFormat
  * Class ChangePwdPost for password changing
  */
 class ChangePwdPost extends Action

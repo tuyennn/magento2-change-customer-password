@@ -5,7 +5,6 @@ namespace GhoSter\ChangeCustomerPassword\Block\Adminhtml\Customer;
 use Magento\Backend\Block\Template;
 
 /**
- * phpcs:ignore Magento2.Legacy.Copyright.FoundCopyrightMissingOrWrongFormat
  * Class PasswordChange for block
  */
 class PasswordChange extends Template

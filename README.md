@@ -20,6 +20,8 @@ customer password directly like old-fashion way Magento 1.
 - [Extension on GitHub](https://github.com/tuyennn/magento2-change-customer-password)
 - [Direct download link](https://github.com/tuyennn/magento2-change-customer-password/tarball/master)
 
+![Types of branches](./.demo/screenshot_001.jpg)
+
 ## Main Features
 
 * Add a quick update Password button to customer view in Admin
