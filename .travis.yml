@@ -1,4 +1,4 @@
-dist: trusty
+dist: bionic
 
 language: php
 
@@ -7,6 +7,7 @@ php:
   - 7.2
   - 7.3
   - 7.4
+  - 8.1
 
 before_install:
   - composer create-project magento/magento-coding-standard --stability=dev magento-coding-standard
