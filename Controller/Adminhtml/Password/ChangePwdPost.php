@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace GhoSter\ChangeCustomerPassword\Controller\Adminhtml\Password;
 
@@ -9,11 +10,12 @@ use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\CustomerRegistry;
 use Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Framework\App\Action\HttpPostActionInterface;
 
 /**
  * Class ChangePwdPost for password changing
  */
-class ChangePwdPost extends Action
+class ChangePwdPost extends Action implements HttpPostActionInterface
 {
     /**
      * @var CustomerRepositoryInterface
