@@ -12,7 +12,7 @@ customer password directly like old-fashion way Magento 1.
 [![PHP Version Require](http://poser.pugx.org/ghoster/changecustomerpassword/require/php)](https://packagist.org/packages/ghoster/changecustomerpassword)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ae1071a530754edc944356b4e1bcb92f)](https://www.codacy.com/gh/tuyennn/magento2-change-customer-password/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tuyennn/magento2-change-customer-password&amp;utm_campaign=Badge_Grade)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/thinghost)
-[![Build Status](https://app.travis-ci.com/tuyennn/magento2-change-customer-password.svg?branch=master)](https://app.travis-ci.com/github/tuyennn/magento2-change-customer-password)
+[![Build Status](https://github.com/tuyennn/magento2-change-customer-password/actions/workflows/coding-standard.yml/badge.svg)](https://github.com/tuyennn/magento2-change-customer-password/actions/workflows/coding-standard.yml)
 
 
 ---
