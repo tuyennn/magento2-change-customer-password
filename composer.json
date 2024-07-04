@@ -4,6 +4,24 @@
     "require": {
         "php": "~7.3.0||~7.4.0||~8.1.0||~8.2.0||~8.3.0"
     },
+    "minimum-stability": "stable",
+    "archive": {
+        "exclude": [
+            "/.gitignore",
+            "/grumphp.yml",
+            "/pdepend.xml",
+            "/phpstan.neon",
+            "/phpunit.xml",
+            "/phpcs.xml",
+            "/phpmd.xml",
+            "/package.json",
+            "/.eslintrc.json",
+            "/.eslintignore",
+            "/tests",
+            "/.demo",
+            "/.github"
+        ]
+    },
     "authors": [
         {
             "name": "Tuyen Nguyen",
