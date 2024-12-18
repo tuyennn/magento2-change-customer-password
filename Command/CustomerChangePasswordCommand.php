@@ -62,7 +62,6 @@ class CustomerChangePasswordCommand extends Command
         AppState $state
     ) {
         parent::__construct();
-        $this->customerFactory = $customerFactory;
         $this->customerResource = $resource;
         $this->customerRegistry = $customerRegistry;
         $this->storeManager = $storeManager;
