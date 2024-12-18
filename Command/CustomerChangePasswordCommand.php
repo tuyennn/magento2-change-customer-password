@@ -5,6 +5,7 @@ namespace GhoSter\ChangeCustomerPassword\Command;
 
 use Magento\Customer\Model\Customer;
 use Magento\Customer\Model\CustomerFactory;
+use Magento\Customer\Model\CustomerRegistry;
 use Magento\Customer\Model\ResourceModel\Customer as CustomerResource;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State as AppState;
@@ -22,14 +23,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CustomerChangePasswordCommand extends Command
 {
     /**
-     * @var CustomerFactory
-     */
-    private $customerFactory;
-
-    /**
      * @var CustomerResource
      */
     private $customerResource;
+
+    /**
+     * @var CustomerRegistry
+     */
+    private $customerRegistry;
 
     /**
      * @var StoreManagerInterface
@@ -49,20 +50,21 @@ class CustomerChangePasswordCommand extends Command
     /**
      * CustomerChangePasswordCommand constructor
      *
-     * @param CustomerFactory $customerFactory
      * @param StoreManagerInterface $storeManager
      * @param CustomerResource $resource
+     * @param CustomerRegistry $customerRegistry
      * @param AppState $state
      */
     public function __construct(
-        CustomerFactory $customerFactory,
         StoreManagerInterface $storeManager,
         CustomerResource $resource,
+        CustomerRegistry $customerRegistry,
         AppState $state
     ) {
         parent::__construct();
         $this->customerFactory = $customerFactory;
         $this->customerResource = $resource;
+        $this->customerRegistry = $customerRegistry;
         $this->storeManager = $storeManager;
         $this->appState = $state;
     }
@@ -96,10 +98,17 @@ class CustomerChangePasswordCommand extends Command
         } catch (LocalizedException $exception) {
         }
 
-        $customer = $this->getCustomerByEmail($this->getEmail());
-        $customer->setPassword($this->getPassword());
-        $this->customerResource->save($customer);
-        $output->writeln(sprintf('Updated password for customer "%s".', $this->getEmail()));
+        try {
+            $customer = $this->getCustomerByEmail($this->getEmail());
+            $customer->setPassword($this->getPassword());
+            $this->customerResource->save($customer);
+            $output->writeln(sprintf('Updated password for customer "%s".', $this->getEmail()));
+        } catch (\Exception $e) {
+            $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
+        }
+
+        return Command::SUCCESS;
     }
 
     /**
@@ -133,7 +142,7 @@ class CustomerChangePasswordCommand extends Command
     }
 
     /**
-     * Get website Id by code
+     * Get website I'd by code
      *
      * @param string $code
      * @return int
@@ -158,12 +167,8 @@ class CustomerChangePasswordCommand extends Command
      */
     private function getCustomerByEmail(string $email): Customer
     {
-        $customer = $this->customerFactory->create();
-        if ($this->getWebsiteCode()) {
-            $websiteId = $this->getWebsiteIdByCode($this->getWebsiteCode());
-            $customer->setWebsiteId($websiteId);
-        }
-        $this->customerResource->loadByEmail($customer, $email);
+        $websiteId = $this->getWebsiteCode() ? $this->getWebsiteIdByCode($this->getWebsiteCode()) : null;
+        $customer = $this->customerRegistry->retrieveByEmail($email, $websiteId);
         if (!$customer->getId()) {
             throw new \InvalidArgumentException(sprintf('No customer with email "%s" found.', $this->getEmail()));
         }
