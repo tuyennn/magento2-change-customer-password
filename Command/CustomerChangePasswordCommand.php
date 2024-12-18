@@ -142,7 +142,7 @@ class CustomerChangePasswordCommand extends Command
     }
 
     /**
-     * Get website I'd by code
+     * Get website id by code
      *
      * @param string $code
      * @return int
