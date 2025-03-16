@@ -58,9 +58,7 @@ class ChangePwdPost extends Action implements HttpPostActionInterface
         $this->customerRepository = $customerRepository;
         $this->customerRegistry = $customerRegistry;
         $this->encryptor = $encryptor;
-        $objectManager = ObjectManager::getInstance();
-        $this->addressRegistry = $addressRegistry
-            ?: $objectManager->get(AddressRegistry::class);
+        $this->addressRegistry = $addressRegistry ?: ObjectManager::getInstance()->get(AddressRegistry::class);
         parent::__construct($context);
     }
 
