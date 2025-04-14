@@ -23,13 +23,16 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.3@master
+        env:
+          MAGENTO_VERSION: '2.4.7'
+          COMPOSER_VERSION: '2'
         with:
-          module_name: GhoSter_ChangeCustomerPassword
-          composer_name: ghoster/changecustomerpassword
-          ce_version: 2.4.7
+          module_name: ${{ secrets.MODULE_NAME }}
+          composer_name: ${{ secrets.COMPOSER_NAME }}
+          magento_version: 2.4.7
 
   mage246:
     name: Magento 2 Integration Tests (Magento v2.4.6)
@@ -52,13 +55,16 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.2@master
+        env:
+          MAGENTO_VERSION: '2.4.6'
+          COMPOSER_VERSION: '2'
         with:
-          module_name: GhoSter_ChangeCustomerPassword
-          composer_name: ghoster/changecustomerpassword
-          ce_version: 2.4.6
+          module_name: ${{ secrets.MODULE_NAME }}
+          composer_name: ${{ secrets.COMPOSER_NAME }}
+          magento_version: 2.4.6
 
   mage244:
     name: Magento 2 Integration Tests (Magento v2.4.4)
@@ -81,13 +87,16 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        env:
+          MAGENTO_VERSION: '2.4.4'
+          COMPOSER_VERSION: '2'
         with:
-          module_name: GhoSter_ChangeCustomerPassword
-          composer_name: ghoster/changecustomerpassword
-          ce_version: 2.4.4
+          module_name: ${{ secrets.MODULE_NAME }}
+          composer_name: ${{ secrets.COMPOSER_NAME }}
+          magento_version: 2.4.4
 
   mage24:
     name: Magento 2 Integration Tests (Magento v2.4.3)
@@ -110,10 +119,13 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        env:
+          MAGENTO_VERSION: '2.4.3'
+          COMPOSER_VERSION: '2'
         with:
-          module_name: GhoSter_ChangeCustomerPassword
-          composer_name: ghoster/changecustomerpassword
-          ce_version: 2.4.3
+          module_name: ${{ secrets.MODULE_NAME }}
+          composer_name: ${{ secrets.COMPOSER_NAME }}
+          magento_version: 2.4.3
