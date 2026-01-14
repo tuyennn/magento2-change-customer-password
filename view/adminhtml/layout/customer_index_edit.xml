@@ -5,6 +5,7 @@
         <referenceContainer name="content">
             <block class="GhoSter\ChangeCustomerPassword\Block\Adminhtml\Customer\PasswordChange"
                    name="customer_change_password"
+                   aclResource="GhoSter_ChangeCustomerPassword::change_password"
                    template="GhoSter_ChangeCustomerPassword::customer/password_change.phtml"/>
         </referenceContainer>
     </body>
