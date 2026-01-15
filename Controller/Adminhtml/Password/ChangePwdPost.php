@@ -19,6 +19,8 @@ use Magento\Framework\App\ObjectManager;
  */
 class ChangePwdPost extends Action implements HttpPostActionInterface
 {
+    public const ADMIN_RESOURCE = 'GhoSter_ChangeCustomerPassword::change_password';
+
     /**
      * @var CustomerRepositoryInterface
      */
@@ -137,13 +139,5 @@ class ChangePwdPost extends Action implements HttpPostActionInterface
     protected function createPasswordHash(string $password)
     {
         return $this->encryptor->getHash($password, true);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Magento_Customer::manage');
     }
 }
