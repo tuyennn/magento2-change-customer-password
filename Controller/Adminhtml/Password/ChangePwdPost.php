@@ -4,15 +4,17 @@ declare(strict_types=1);
 namespace GhoSter\ChangeCustomerPassword\Controller\Adminhtml\Password;
 
 use Exception;
+use GhoSter\ChangeCustomerPassword\Model\PasswordValidator;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Customer\Api\CustomerRepositoryInterface;
-use Magento\Customer\Model\CustomerRegistry;
-use Magento\Framework\Encryption\EncryptorInterface;
-use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Customer\Model\AddressRegistry;
+use Magento\Customer\Model\CustomerRegistry;
+use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Framework\Exception\InputException;
 
 /**
  * Class ChangePwdPost for password changing
@@ -42,6 +44,11 @@ class ChangePwdPost extends Action implements HttpPostActionInterface
     private $addressRegistry;
 
     /**
+     * @var PasswordValidator
+     */
+    private $passwordValidator;
+
+    /**
      * ChangePwdPost constructor.
      *
      * @param Context $context
@@ -49,18 +56,21 @@ class ChangePwdPost extends Action implements HttpPostActionInterface
      * @param CustomerRegistry $customerRegistry
      * @param EncryptorInterface $encryptor
      * @param AddressRegistry|null $addressRegistry
+     * @param PasswordValidator|null $passwordValidator
      */
     public function __construct(
         Context $context,
         CustomerRepositoryInterface $customerRepository,
         CustomerRegistry $customerRegistry,
         EncryptorInterface $encryptor,
-        ?AddressRegistry $addressRegistry = null
+        ?AddressRegistry $addressRegistry = null,
+        ?PasswordValidator $passwordValidator = null
     ) {
         $this->customerRepository = $customerRepository;
         $this->customerRegistry = $customerRegistry;
         $this->encryptor = $encryptor;
         $this->addressRegistry = $addressRegistry ?: ObjectManager::getInstance()->get(AddressRegistry::class);
+        $this->passwordValidator = $passwordValidator ?: ObjectManager::getInstance()->get(PasswordValidator::class);
         parent::__construct($context);
     }
 
@@ -81,6 +91,7 @@ class ChangePwdPost extends Action implements HttpPostActionInterface
                 if (empty($password)) {
                     $this->messageManager->addErrorMessage(__('Password can not be empty'));
                 } else {
+                    $this->passwordValidator->validate($password);
                     $customer = $this->customerRepository->getById($customerId);
                     $customerSecureRegistry = $this->customerRegistry->retrieveSecureData($customerId);
                     $customerSecureRegistry->setRpToken(null);
