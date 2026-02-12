@@ -37,7 +37,8 @@ class Config
     public function getMinimumPasswordLength(): int
     {
         return (int)$this->scopeConfig->getValue(
-            self::XML_PATH_MINIMUM_PASSWORD_LENGTH, ScopeInterface::SCOPE_STORE
+            self::XML_PATH_MINIMUM_PASSWORD_LENGTH,
+            ScopeInterface::SCOPE_STORE
         ) ?: self::DEFAULT_MINIMUM_PASSWORD_LENGTH;
     }
 
