@@ -26,13 +26,11 @@ jobs:
       - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.4@master
-        env:
-          MAGENTO_VERSION: '2.4.8'
-          COMPOSER_VERSION: '2'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
-          magento_version: 2.4.8
+          ce_version: 2.4.8
+          block_insecure: false
 
   mage247:
     name: Magento 2 Integration Tests (Magento v2.4.7)
@@ -58,12 +56,11 @@ jobs:
       - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.3@master
-        env:
-          MAGENTO_VERSION: '2.4.7'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
-          magento_version: 2.4.7
+          ce_version: 2.4.7
+          block_insecure: false
 
   mage246:
     name: Magento 2 Integration Tests (Magento v2.4.6)
@@ -89,12 +86,11 @@ jobs:
       - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.2@master
-        env:
-          MAGENTO_VERSION: '2.4.6'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
-          magento_version: 2.4.6
+          ce_version: 2.4.6
+          block_insecure: false
 
   mage245:
     name: Magento 2 Integration Tests (Magento v2.4.5)
@@ -120,12 +116,11 @@ jobs:
       - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.1@master
-        env:
-          MAGENTO_VERSION: '2.4.5'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
-          magento_version: 2.4.5
+          ce_version: 2.4.5
+          block_insecure: false
 
   mage244:
     name: Magento 2 Integration Tests (Magento v2.4.4)
@@ -151,12 +146,11 @@ jobs:
       - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.1@master
-        env:
-          MAGENTO_VERSION: '2.4.4-p13'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
-          magento_version: 2.4.4
+          ce_version: 2.4.4-p13
+          block_insecure: false
 
   mage24:
     name: Magento 2 Integration Tests (Magento v2.4.3)
@@ -182,9 +176,8 @@ jobs:
       - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
-        env:
-          MAGENTO_VERSION: '2.4.3'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
-          magento_version: 2.4.3
+          ce_version: 2.4.3
+          block_insecure: false
