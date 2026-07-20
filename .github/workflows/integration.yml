@@ -2,9 +2,9 @@ name: ExtDN M2 Integration Tests
 on: [ push, pull_request ]
 
 jobs:
-  mage247:
-    name: Magento 2 Integration Tests (Magento v2.4.7)
-    runs-on: ubuntu-latest
+  mage248:
+    name: Magento 2 Integration Tests (Magento v2.4.8)
+    runs-on: ubuntu-22.04
     services:
       mysql:
         image: mysql:8.0
@@ -23,12 +23,43 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      - name: M2 Integration Tests with Magento 2
+        uses: extdn/github-actions-m2/magento-integration-tests/8.4@master
+        env:
+          MAGENTO_VERSION: '2.4.8'
+          COMPOSER_VERSION: '2'
+        with:
+          module_name: ${{ secrets.MODULE_NAME }}
+          composer_name: ${{ secrets.COMPOSER_NAME }}
+          magento_version: 2.4.8
+
+  mage247:
+    name: Magento 2 Integration Tests (Magento v2.4.7)
+    runs-on: ubuntu-22.04
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --tmpfs /tmp:rw --tmpfs /var/lib/mysql:rw --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      es:
+        image: docker.io/wardenenv/elasticsearch:8.1
+        ports:
+          - 9200:9200
+        env:
+          'discovery.type': single-node
+          'xpack.security.enabled': false
+          ES_JAVA_OPTS: "-Xms64m -Xmx512m"
+        options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.3@master
         env:
           MAGENTO_VERSION: '2.4.7'
-          COMPOSER_VERSION: '2'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
@@ -36,7 +67,7 @@ jobs:
 
   mage246:
     name: Magento 2 Integration Tests (Magento v2.4.6)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     services:
       mysql:
         image: mysql:8.0
@@ -55,20 +86,19 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/8.2@master
         env:
           MAGENTO_VERSION: '2.4.6'
-          COMPOSER_VERSION: '2'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
           magento_version: 2.4.6
 
-  mage244:
-    name: Magento 2 Integration Tests (Magento v2.4.4)
-    runs-on: ubuntu-latest
+  mage245:
+    name: Magento 2 Integration Tests (Magento v2.4.5)
+    runs-on: ubuntu-22.04
     services:
       mysql:
         image: mysql:8.0
@@ -87,12 +117,42 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
-        uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        uses: extdn/github-actions-m2/magento-integration-tests/8.1@master
         env:
-          MAGENTO_VERSION: '2.4.4'
-          COMPOSER_VERSION: '2'
+          MAGENTO_VERSION: '2.4.5'
+        with:
+          module_name: ${{ secrets.MODULE_NAME }}
+          composer_name: ${{ secrets.COMPOSER_NAME }}
+          magento_version: 2.4.5
+
+  mage244:
+    name: Magento 2 Integration Tests (Magento v2.4.4)
+    runs-on: ubuntu-22.04
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --tmpfs /tmp:rw --tmpfs /var/lib/mysql:rw --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      es:
+        image: docker.io/wardenenv/elasticsearch:7.16
+        ports:
+          - 9200:9200
+        env:
+          'discovery.type': single-node
+          'xpack.security.enabled': false
+          ES_JAVA_OPTS: "-Xms64m -Xmx512m"
+        options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v7
+      - name: M2 Integration Tests with Magento 2
+        uses: extdn/github-actions-m2/magento-integration-tests/8.1@master
+        env:
+          MAGENTO_VERSION: '2.4.4-p13'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
@@ -100,7 +160,7 @@ jobs:
 
   mage24:
     name: Magento 2 Integration Tests (Magento v2.4.3)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     services:
       mysql:
         image: mysql:8.0
@@ -119,12 +179,11 @@ jobs:
           ES_JAVA_OPTS: "-Xms64m -Xmx512m"
         options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: M2 Integration Tests with Magento 2
         uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
         env:
           MAGENTO_VERSION: '2.4.3'
-          COMPOSER_VERSION: '2'
         with:
           module_name: ${{ secrets.MODULE_NAME }}
           composer_name: ${{ secrets.COMPOSER_NAME }}
